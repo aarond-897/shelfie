@@ -1,0 +1,6 @@
+CREATE TABLE shelfie(
+id SERIAL PRIMARY KEY,
+name VARCHAR(40),
+price FLOAT,
+img TEXT
+);
