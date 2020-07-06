@@ -15,18 +15,20 @@ class Form extends Component {
           }
     }
 
-    // componentDidUpdate(prevProps,prevState){
-    //     if(this.state.id !== prevState.id){
-    //         console.log('did update working')
-    //         this.setState({
-    //             name:"",
-    //             price:0,
-    //             img:"",
-    //             id: ""
-    //         })
-    //     }
-    // }
+    componentDidUpdate(prevProps,prevState){
+        if(this.props.match.params !== prevProps.match.params){
+            console.log('did update working')
+            this.setState({
+                name:"",
+                price:0,
+                img:"https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.pixabay.com%2Fphoto%2F2016%2F01%2F03%2F00%2F43%2Fupload-1118928_640.png&f=1&nofb=1",
+                id: null
+            })
+        }
+    }
+
     getProduct=()=>{
+        console.log(this.props)
         axios.get(`/api/product/${this.props.match.params.id}`)
         .then(res=>(
             this.setState({
