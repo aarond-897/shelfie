@@ -24,14 +24,21 @@ module.exports={
             .catch(err=>console.log('error on delete_product'))
     },
     edit_product:(req,res)=>{
-        console.log(req)
         const db = req.app.get('db'),
             {id}=req.params,
             {name, price, img}=req.body;
         
         db.edit_product(id,name,price,img)
-            .then(()=>res.sendStatus(200))
+            .then(()=> console.log('this is working'))
             .catch((err)=>console.log('Error on edit_product'))
 
+    },
+    get_product:(req,res)=>{
+        const db = req.app.get('db'),
+            {id}=req.params;
+
+        db.get_product(id)
+        .then(product=>res.status(200).send(product))
+        .catch(err=>console.log('send product did not work'))
     }
 }

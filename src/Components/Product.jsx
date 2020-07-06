@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
 
 
 class Product extends Component {
@@ -12,23 +13,33 @@ class Product extends Component {
         this.props.deleteProductFn(id)
     }
 
-    handleSetSelectedProduct=()=>{
-        this.props.setSelectedProductFn({
-            name: this.props.name,
-            id:this.props.id,
-            img: this.props.img,
-            price: this.props.price
-        })
-    }
+    // handleSetSelectedProduct=()=>{
+    //     this.props.setSelectedProductFn({
+    //         name: this.props.name,
+    //         id:this.props.id,
+    //         img: this.props.img,
+    //         price: this.props.price
+    //     })
+    // }
 
     render() { 
         return (
         <div className='product'>
-            <img src={this.props.img} alt={this.props.name}/>
+            <img className='product-image' src={this.props.img} alt={this.props.name}/>
+            <div className='product-content'>
+            <div className="product-deets">
             <p>{this.props.name}</p>
-            <p>{this.props.price}</p>
-            <button onClick={()=>this.handleDeleteClick(this.props.id)}>Delete</button>
-            <button onClick={this.handleSetSelectedProduct}>Edit</button>
+            <p>${this.props.price}</p>
+            </div>
+            <div className="product-buttons">
+            <Link to="/">
+            <button className="product-button"onClick={()=>this.handleDeleteClick(this.props.id)}>Delete</button>
+            </Link>
+            <Link to={`/edit/${this.props.id}`}>
+            <button className="product-button">Edit</button>
+            </Link>
+            </div>
+            </div>
         </div> 
         );
     }
