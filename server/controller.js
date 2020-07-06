@@ -21,7 +21,7 @@ module.exports={
              {id}=req.params;
         db.delete_product(id)
             .then(()=>res.sendStatus(200))
-            .catch(err=>console.log('error on delete_product'))
+            .catch(err=>console.log(err))
     },
     edit_product:(req,res)=>{
         const db = req.app.get('db'),
@@ -29,8 +29,8 @@ module.exports={
             {name, price, img}=req.body;
         
         db.edit_product(id,name,price,img)
-            .then(()=> console.log('this is working'))
-            .catch((err)=>console.log('Error on edit_product'))
+            .then(()=> res.sendStatus(200))
+            .catch((err)=>console.log(err))
 
     },
     get_product:(req,res)=>{
@@ -39,6 +39,6 @@ module.exports={
 
         db.get_product(id)
         .then(product=>res.status(200).send(product))
-        .catch(err=>console.log('send product did not work'))
+        .catch(err=>console.log(err))
     }
 }
